@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		window.onload = function(){
+			var oBtn = document.getElementsByTagName("button")[0];
+			var oSpan = document.getElementsByTagName("span")[0];
+			oBtn.onclick = function (){
+				if(XMLHttpRequest){
+					xml = new XMLHttpRequest();
+				}else {
+					xml = new ActiveXObject(Microsoft.XMLHttp);
+				}
+				xml.open("get","new.txt",true);
+				xml.send();
+				xml.onreadystatechange = function (){
+					if(xml.readyState == 4){
+						oSpan.innerHTML = xml.responseText;
+					}
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<button>更新</button>
+	<p>txt里面的内容：<span></span></p>
+</body>
+</html>
